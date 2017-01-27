@@ -99,11 +99,7 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
         this.audioFile = file;
         this.recorder = new MediaRecorder();
 
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            this.tempFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/tmprecording.3gp";
-        } else {
-            this.tempFile = "/data/data/" + handler.cordova.getActivity().getPackageName() + "/cache/tmprecording.3gp";
-        }
+        this.tempFile = "/data/data/" + handler.cordova.getActivity().getPackageName() + "/cache/tmprecording.3gp";
 
     }
 
@@ -173,11 +169,7 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
         File f = new File(this.tempFile);
 
         if (!file.startsWith("/")) {
-            if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                file = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + file;
-            } else {
-                file = "/data/data/" + handler.cordova.getActivity().getPackageName() + "/cache/" + file;
-            }
+            file = "/data/data/" + handler.cordova.getActivity().getPackageName() + "/cache/" + file;
         }
 
         String logMsg = "renaming " + this.tempFile + " to " + file;
